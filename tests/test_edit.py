@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from montage.edit import (
+from roughcut.edit import (
     AddOverlay,
     AddSFX,
     RemoveClip,
@@ -10,7 +10,7 @@ from montage.edit import (
     apply_edits,
     apply_one,
 )
-from montage.schemas import EDL, EDLClip, TextOverlay
+from roughcut.schemas import EDL, EDLClip, TextOverlay
 
 
 def _mk_edl() -> EDL:

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- roughcut: a rough-cut diamond. film rough cut / diamond in the rough. -->
+  <g stroke="currentColor" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">
+    <!-- outline -->
+    <path d="M25 30 L75 30 L88 45 L50 92 L12 45 Z"/>
+    <!-- girdle -->
+    <path d="M12 45 L88 45"/>
+    <!-- crown facets -->
+    <path d="M25 30 L38 45"/>
+    <path d="M75 30 L62 45"/>
+    <path d="M50 30 L38 45"/>
+    <path d="M50 30 L62 45"/>
+    <!-- pavilion facets -->
+    <path d="M38 45 L50 92"/>
+    <path d="M62 45 L50 92"/>
+  </g>
+</svg>

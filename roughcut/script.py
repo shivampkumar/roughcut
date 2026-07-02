@@ -14,7 +14,7 @@ from pathlib import Path
 
 from pydantic import BaseModel, Field
 
-from montage.schemas import ClipAnalysis, SpeechSegment
+from roughcut.schemas import ClipAnalysis, SpeechSegment
 
 
 _SENTENCE_BREAK = re.compile(r"(?<=[.!?])\s+")

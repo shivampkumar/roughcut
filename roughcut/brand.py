@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from montage.schemas import BrandKit
+from roughcut.schemas import BrandKit
 
 DEFAULT_BRAND_PATH = Path("brand.json")
 

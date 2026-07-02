@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from montage.script import load_script, align_script, _similarity
-from montage.schemas import ClipAnalysis, SpeechSegment
+from roughcut.script import load_script, align_script, _similarity
+from roughcut.schemas import ClipAnalysis, SpeechSegment
 
 
 def test_load_script_strips_stage_directions(tmp_path: Path):

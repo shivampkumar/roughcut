@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from montage.music import TrackAnalysis, snap_edl_to_beats
-from montage.schemas import EDL, EDLClip
+from roughcut.music import TrackAnalysis, snap_edl_to_beats
+from roughcut.schemas import EDL, EDLClip
 
 
 def _track(beats: list[float]) -> TrackAnalysis:
@@ -56,7 +56,7 @@ def test_analyze_track_on_real_wav(tmp_path):
     # Generate a click track and verify librosa finds the right tempo ballpark
     import numpy as np
     import soundfile as sf
-    from montage.music import analyze_track
+    from roughcut.music import analyze_track
 
     sr = 22050
     dur = 10.0

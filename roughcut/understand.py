@@ -19,7 +19,7 @@ from pydantic import ValidationError
 from rich.console import Console
 from rich.progress import Progress
 
-from montage.schemas import ClipAnalysis, MediaAsset, SpeechSegment
+from roughcut.schemas import ClipAnalysis, MediaAsset, SpeechSegment
 
 console = Console()
 

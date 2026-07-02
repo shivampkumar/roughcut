@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from montage.crop import plan_crop_for_clip, TARGET_AR
-from montage.schemas import EDLClip, MediaAsset
+from roughcut.crop import plan_crop_for_clip, TARGET_AR
+from roughcut.schemas import EDLClip, MediaAsset
 
 
 def _photo(w: int, h: int) -> MediaAsset:

@@ -10,8 +10,8 @@ import os
 import tempfile
 from pathlib import Path
 
-from montage.ingest import extract_audio
-from montage.schemas import MediaAsset, SpeechSegment
+from roughcut.ingest import extract_audio
+from roughcut.schemas import MediaAsset, SpeechSegment
 
 DEFAULT_MODEL = os.getenv("WHISPER_MODEL", "mlx-community/whisper-large-v3-turbo")
 MIN_SEGMENT_DURATION = 0.3   # drop transcripts shorter than this
@@ -61,7 +61,7 @@ def transcribe_video(video: MediaAsset, work_dir: Path | None = None) -> list[Sp
     """Extract audio + transcribe. Returns [] if no audio or whisper unavailable."""
     if not video.has_audio:
         return []
-    work_dir = work_dir or Path(tempfile.mkdtemp(prefix="montage_speech_"))
+    work_dir = work_dir or Path(tempfile.mkdtemp(prefix="roughcut_speech_"))
     audio_path = work_dir / f"{video.path.stem}.wav"
     if not audio_path.exists():
         if extract_audio(video, audio_path) is None:

@@ -1,4 +1,8 @@
-# montage
+<p align="center"><img src="assets/logo_black_1024.png#gh-light-mode-only" width="96"/><img src="assets/logo_white_1024.png#gh-dark-mode-only" width="96"/></p>
+
+# roughcut
+
+*Every camera roll has a diamond in it.*
 
 Camera roll → finished Reel. Drop a folder of raw clips and photos, get back one edited short with music, captions, and cuts that land on the beat.
 
@@ -30,7 +34,7 @@ RENDER       ffmpeg: crop/punch-in/Ken Burns, xfade, music ducked under speech,
 The EDL (edit decision list) is a JSON file you can inspect, hand-edit, or mutate conversationally:
 
 ```bash
-montage edit "trim the close by a second and add a boom at 0:05"
+roughcut edit "trim the close by a second and add a boom at 0:05"
 ```
 
 ## Two modes
@@ -38,13 +42,13 @@ montage edit "trim the close by a second and add a boom at 0:05"
 **Casual** — zero config. Auto-detects the event (concert / trip / party / wedding), invents the narrative, leans on real audio from the scene.
 
 ```bash
-montage casual ~/Photos/tokyo-trip --music track.mp3
+roughcut casual ~/Photos/tokyo-trip --music track.mp3
 ```
 
 **Pro** — for creators. Brief-driven, with reference-reel style transfer, brand kits, script alignment (your talking-head A-roll is matched to your script via Whisper, B-roll cut in between), and multi-variant generation.
 
 ```bash
-montage pro ~/footage/ep12 \
+roughcut pro ~/footage/ep12 \
   --brief "cold open on the reveal, hyped but clean" \
   --script script.txt \
   --ref refs/ep10.mp4 \
@@ -60,7 +64,7 @@ Requires: macOS (Apple Silicon), Python ≥ 3.11, ffmpeg (`brew install ffmpeg`)
 uv venv .venv && source .venv/bin/activate
 uv pip install -e .
 cp .env.example .env    # add GEMINI_API_KEY + ANTHROPIC_API_KEY
-montage init-sfx        # generate the synthesized SFX library
+roughcut init-sfx        # generate the synthesized SFX library
 ```
 
 Cost: roughly $0.50–1.00 in API calls per reel (Gemini video analysis dominates). Whisper and rendering run locally.
@@ -69,12 +73,12 @@ Cost: roughly $0.50–1.00 in API calls per reel (Gemini video analysis dominate
 
 | Command | What |
 |---|---|
-| `montage casual DIR` | folder → reel, zero config |
-| `montage pro DIR --brief "..."` | creator mode: script, refs, brand, variants |
-| `montage edit "..."` | natural-language edits to the last cut |
-| `montage ingest / speech / understand / story / render` | run stages individually (cached JSON between stages) |
-| `montage brand-init` | scaffold a brand kit |
-| `montage init-sfx` | regenerate SFX wavs |
+| `roughcut casual DIR` | folder → reel, zero config |
+| `roughcut pro DIR --brief "..."` | creator mode: script, refs, brand, variants |
+| `roughcut edit "..."` | natural-language edits to the last cut |
+| `roughcut ingest / speech / understand / story / render` | run stages individually (cached JSON between stages) |
+| `roughcut brand-init` | scaffold a brand kit |
+| `roughcut init-sfx` | regenerate SFX wavs |
 
 ## Testing
 
@@ -83,8 +87,8 @@ python -m pytest tests/                 # 30 unit tests, no API needed
 python scripts/make_test_fixtures.py    # synthetic event folder (TTS speech,
                                         # rotated clip, silent clip, photos)
 python scripts/make_test_track.py       # 120 BPM test track
-montage pro /tmp/montage_fixtures --brief "test" \
-  --script /tmp/montage_fixtures/script.txt --music /tmp/test_track.wav
+roughcut pro /tmp/roughcut_fixtures --brief "test" \
+  --script /tmp/roughcut_fixtures/script.txt --music /tmp/test_track.wav
 ```
 
 ## Roadmap

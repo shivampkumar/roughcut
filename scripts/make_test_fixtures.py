@@ -1,6 +1,6 @@
 """Generate a synthetic 'event folder' to test the full pipeline without real footage.
 
-Produces in /tmp/montage_fixtures:
+Produces in /tmp/roughcut_fixtures:
   - aroll_speech.mp4    720x1280 portrait, real TTS speech (macOS say) — tests Whisper,
                         a_roll detection, script alignment
   - clip_rotated.mp4    1280x720 stored landscape + rotate=-90 metadata — tests rotation swap
@@ -17,7 +17,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw
 
-OUT = Path("/tmp/montage_fixtures")
+OUT = Path("/tmp/roughcut_fixtures")
 OUT.mkdir(parents=True, exist_ok=True)
 
 SPEECH = (

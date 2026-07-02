@@ -17,7 +17,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-from montage.schemas import EDLClip, MediaAsset
+from roughcut.schemas import EDLClip, MediaAsset
 
 TARGET_W = 1080
 TARGET_H = 1920
@@ -140,7 +140,7 @@ def plan_crop_for_clip(
         in_s, out_s = clip.in_s, clip.out_s
         ts = np.linspace(in_s, max(in_s, out_s - 0.01), samples)
         # Probe rotation once
-        from montage.ingest import _ffprobe, _rotation
+        from roughcut.ingest import _ffprobe, _rotation
         try:
             info = _ffprobe(asset.path)
             vs = next(s for s in info["streams"] if s["codec_type"] == "video")

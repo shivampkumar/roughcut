@@ -13,7 +13,7 @@ from google import genai
 from google.genai import types
 from pydantic import ValidationError
 
-from montage.schemas import RefStyle
+from roughcut.schemas import RefStyle
 
 DEFAULT_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-pro")
 

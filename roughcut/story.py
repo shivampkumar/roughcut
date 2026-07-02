@@ -12,8 +12,8 @@ from pathlib import Path
 from anthropic import Anthropic
 from pydantic import ValidationError
 
-from montage.schemas import BrandKit, ClipAnalysis, EDL, MediaAsset, RefStyle
-from montage.script import Script, format_for_prompt as _format_script
+from roughcut.schemas import BrandKit, ClipAnalysis, EDL, MediaAsset, RefStyle
+from roughcut.script import Script, format_for_prompt as _format_script
 
 DEFAULT_MODEL = os.getenv("ANTHROPIC_MODEL", "claude-opus-4-7")
 

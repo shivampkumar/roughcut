@@ -14,10 +14,10 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-from montage.crop import CropPlan, plan_crops
-from montage.music import sfx_path
-from montage.schemas import BrandKit, EDL, EDLClip, MediaAsset, SFXCue, TextOverlay
-from montage.text_render import render_all_overlays
+from roughcut.crop import CropPlan, plan_crops
+from roughcut.music import sfx_path
+from roughcut.schemas import BrandKit, EDL, EDLClip, MediaAsset, SFXCue, TextOverlay
+from roughcut.text_render import render_all_overlays
 
 TARGET_W_OUT = 1080
 TARGET_H_OUT = 1920
@@ -383,7 +383,7 @@ def assemble(
     normalize_audio: bool = True,
 ) -> Path:
     """Render the final reel."""
-    work_dir = work_dir or Path(tempfile.mkdtemp(prefix="montage_"))
+    work_dir = work_dir or Path(tempfile.mkdtemp(prefix="roughcut_"))
     work_dir.mkdir(parents=True, exist_ok=True)
 
     assets_by_path = {a.path: a for a in assets}

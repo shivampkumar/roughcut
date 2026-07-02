@@ -12,7 +12,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
-from montage.schemas import TextOverlay
+from roughcut.schemas import TextOverlay
 
 TARGET_W = 1080
 TARGET_H = 1920

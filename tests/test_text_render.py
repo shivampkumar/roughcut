@@ -2,8 +2,8 @@ from pathlib import Path
 
 from PIL import Image
 
-from montage.text_render import render_overlay_png, _strip_dashes, TARGET_W, TARGET_H
-from montage.schemas import TextOverlay
+from roughcut.text_render import render_overlay_png, _strip_dashes, TARGET_W, TARGET_H
+from roughcut.schemas import TextOverlay
 
 
 def test_strip_em_dash():
@@ -39,7 +39,7 @@ def test_long_text_wraps(tmp_path: Path):
 
 
 def test_watermark_anchors_near_bottom(tmp_path: Path):
-    ov = TextOverlay(type="lower_third", text="made with montage", start_s=0, duration_s=20, style="watermark")
+    ov = TextOverlay(type="lower_third", text="made with roughcut", start_s=0, duration_s=20, style="watermark")
     _, y = render_overlay_png(ov, tmp_path / "w.png")
     assert y > TARGET_H * 0.85
 

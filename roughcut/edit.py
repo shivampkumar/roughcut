@@ -17,7 +17,7 @@ from typing import Annotated, Literal, Union
 from anthropic import Anthropic
 from pydantic import BaseModel, Field, ValidationError
 
-from montage.schemas import (
+from roughcut.schemas import (
     EDL,
     EDLClip,
     SFXCue,

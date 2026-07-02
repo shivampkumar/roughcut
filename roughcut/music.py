@@ -15,7 +15,7 @@ from pathlib import Path
 import librosa
 import numpy as np
 
-from montage.schemas import EDL, EDLClip
+from roughcut.schemas import EDL, EDLClip
 
 
 @dataclass
@@ -127,7 +127,7 @@ def generate_voiceover(
 
 # ---------- background SFX library (stub) ----------
 
-_SFX_LIBRARY_DIR = Path(os.getenv("MONTAGE_SFX_DIR", str(Path(__file__).parent / "assets" / "sfx")))
+_SFX_LIBRARY_DIR = Path(os.getenv("ROUGHCUT_SFX_DIR", str(Path(__file__).parent / "assets" / "sfx")))
 
 
 def sfx_path(sfx_name: str) -> Path | None:

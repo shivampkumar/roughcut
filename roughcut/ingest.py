@@ -12,7 +12,7 @@ from pathlib import Path
 
 from PIL import Image, ExifTags
 
-from montage.schemas import MediaAsset
+from roughcut.schemas import MediaAsset
 
 VIDEO_EXT = {".mp4", ".mov", ".m4v", ".avi", ".mkv", ".webm"}
 PHOTO_EXT = {".jpg", ".jpeg", ".png", ".heic", ".webp"}

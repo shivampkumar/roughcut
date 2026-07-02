@@ -14,18 +14,18 @@ from dotenv import load_dotenv
 from rich.console import Console
 from rich.table import Table
 
-from montage import ingest as ingest_mod
-from montage import understand as understand_mod
-from montage import story as story_mod
-from montage import music as music_mod
-from montage import speech as speech_mod
-from montage import sfx_gen
-from montage import edit as edit_mod
-from montage import brand as brand_mod
-from montage import references as ref_mod
-from montage import script as script_mod
-from montage.assemble import assemble
-from montage.schemas import EDL, MediaAsset, ClipAnalysis, SpeechSegment, BrandKit, RefStyle
+from roughcut import ingest as ingest_mod
+from roughcut import understand as understand_mod
+from roughcut import story as story_mod
+from roughcut import music as music_mod
+from roughcut import speech as speech_mod
+from roughcut import sfx_gen
+from roughcut import edit as edit_mod
+from roughcut import brand as brand_mod
+from roughcut import references as ref_mod
+from roughcut import script as script_mod
+from roughcut.assemble import assemble
+from roughcut.schemas import EDL, MediaAsset, ClipAnalysis, SpeechSegment, BrandKit, RefStyle
 
 load_dotenv()
 
@@ -225,7 +225,7 @@ def render(
     out: Path = typer.Option(Path("output/reel.mp4"), "--out"),
     work_dir: Path = typer.Option(Path("cache/work"), "--work"),
     snap: float = typer.Option(0.7, "--snap", help="Beat-snap strength 0-1"),
-    watermark: str = typer.Option("", "--watermark", help="Watermark text (e.g. 'made with montage')"),
+    watermark: str = typer.Option("", "--watermark", help="Watermark text (e.g. 'made with roughcut')"),
     brand_path: Path = typer.Option(None, "--brand"),
 ) -> None:
     """Render the final MP4 from cached EDL."""
@@ -334,7 +334,7 @@ def casual(
     _print_edl(edl)
 
     console.rule("[bold]5/5 RENDER")
-    watermark = None if no_watermark else "made with montage"
+    watermark = None if no_watermark else "made with roughcut"
     _render(edl, assets, music, out, watermark_text=watermark)
 
 
