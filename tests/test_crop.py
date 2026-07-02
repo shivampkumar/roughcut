@@ -46,3 +46,17 @@ def test_exact_916_source_full_frame():
     assert plan.crop_w == 1080
     assert plan.crop_h == 1920
     assert plan.crop_x == 0 and plan.crop_y == 0
+
+
+def test_face_detect_never_raises(monkeypatch):
+    # Even with broken detectors (e.g. OpenCV 5.x missing cascade file),
+    # face detection must return None, not crash the render.
+    import numpy as np
+    from roughcut import crop as crop_mod
+
+    def boom(frame):
+        raise RuntimeError("detector exploded")
+
+    monkeypatch.setattr(crop_mod, "_detect_face_box_mediapipe", boom)
+    frame = np.zeros((100, 100, 3), dtype=np.uint8)
+    assert crop_mod._detect_face_box(frame) is None

@@ -62,7 +62,11 @@ CORE PRINCIPLES:
 
 13. **Source quality realism.** If ALL available footage has aesthetic_score <= 4, you are working with B-grade material. Make a tight 15-20 second cut emphasizing the best 2-3 moments. Don't pad to 30s with weak filler.
 
-14. **NO EM DASHES.** Never use em dash (—) in hook_text, overlay text, captions, voiceover_script, or upload_caption. Use commas, ellipses, or new sentences instead. This is a hard rule. Hyphens are fine in hyphenated words; en dashes are not allowed either."""
+14. **NO EM DASHES.** Never use em dash (—) in hook_text, overlay text, captions, voiceover_script, or upload_caption. Use commas, ellipses, or new sentences instead. This is a hard rule. Hyphens are fine in hyphenated words; en dashes are not allowed either.
+
+15. **Don't invent facts.** Overlay text and captions must not assert details you can't verify from the clips or metadata: no seasons, city names, event names, or people's names unless they appear in the clip analyses, speech, or shot_at timestamps. "summer nights" on an October event kills trust. Evocative but factless beats specific but wrong.
+
+16. **Overlays must fit the timeline.** Every overlay's start_s + duration_s must be within the total reel duration. A closer scheduled after the final frame never displays."""
 
 
 _CASUAL_ADDENDUM = """
@@ -160,6 +164,11 @@ def _format_clip_summary(analyses: list[ClipAnalysis], assets_by_path: dict[Path
     for a in analyses:
         asset = assets_by_path.get(a.asset_path)
         dur = f"{asset.duration_s:.1f}s" if asset and asset.type == "video" else "PHOTO"
+        shot_at = (
+            asset.timestamp.strftime("%Y-%m-%d %H:%M")
+            if asset and asset.timestamp
+            else "unknown"
+        )
         speech = ""
         if a.has_speech:
             mean = "MEANINGFUL" if a.speech_is_meaningful else "filler"
@@ -171,7 +180,7 @@ def _format_clip_summary(analyses: list[ClipAnalysis], assets_by_path: dict[Path
                 speech += " " + " ".join(seg_texts)
         moments = ", ".join(f"({s:.1f}-{e:.1f})" for s, e in a.best_moments[:3])
         lines.append(
-            f"- path={a.asset_path} [{dur}] shot={a.shot_type} role={a.narrative_role} "
+            f"- path={a.asset_path} [{dur}] shot_at={shot_at} shot={a.shot_type} role={a.narrative_role} "
             f"comp={a.composition_score:.0f} aesth={a.aesthetic_score:.0f} energy={a.energy:.0f} "
             f"motion={a.motion_type} light={a.lighting} ambient={a.ambient_quality:.0f}{speech} "
             f"best={[moments]} | {a.action} | {a.emotion} | {a.setting}"

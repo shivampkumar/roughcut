@@ -34,10 +34,20 @@ def _load_mediapipe():
         return None
 
 
+def _load_haar() -> "cv2.CascadeClassifier | None":
+    # OpenCV 5.x headless wheels may not bundle the cascade file;
+    # CascadeClassifier silently loads EMPTY and then asserts at detect time.
+    try:
+        cascade = cv2.CascadeClassifier(
+            cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
+        )
+        return None if cascade.empty() else cascade
+    except Exception:
+        return None
+
+
 _MP_DETECTOR = _load_mediapipe()
-_HAAR_CASCADE = cv2.CascadeClassifier(
-    cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
-)
+_HAAR_CASCADE = _load_haar()
 
 
 @dataclass
@@ -93,6 +103,8 @@ def _detect_face_box_mediapipe(frame: np.ndarray) -> tuple[int, int] | None:
 
 
 def _detect_face_box_haar(frame: np.ndarray) -> tuple[int, int] | None:
+    if _HAAR_CASCADE is None:
+        return None
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = _HAAR_CASCADE.detectMultiScale(
         gray, scaleFactor=1.2, minNeighbors=5, minSize=(48, 48)
@@ -104,11 +116,15 @@ def _detect_face_box_haar(frame: np.ndarray) -> tuple[int, int] | None:
 
 
 def _detect_face_box(frame: np.ndarray) -> tuple[int, int] | None:
-    """Try MediaPipe; fall back to Haar. Returns (cx, cy) of dominant face."""
-    box = _detect_face_box_mediapipe(frame)
-    if box is not None:
-        return box
-    return _detect_face_box_haar(frame)
+    """Try MediaPipe; fall back to Haar. Face detect must NEVER kill a render —
+    on any failure we return None and the crop falls back to the hint anchor."""
+    try:
+        box = _detect_face_box_mediapipe(frame)
+        if box is not None:
+            return box
+        return _detect_face_box_haar(frame)
+    except Exception:
+        return None
 
 
 def _hint_anchor_x(src_w: int, hint: str) -> int:

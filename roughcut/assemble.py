@@ -405,8 +405,15 @@ def assemble(
     else:
         _concat_clips(clip_paths, concat_out)
 
+    # Clamp overlays into the actual timeline — the story model sometimes
+    # schedules a closer past the final frame, where it would never display.
+    total = edl.total_duration_s
+    overlays = []
+    for ov in edl.overlays:
+        if ov.start_s >= total - 0.3:
+            ov = ov.model_copy(update={"start_s": max(0.0, total - ov.duration_s - 0.3)})
+        overlays.append(ov)
     # Inject watermark overlay if requested (covers the full timeline)
-    overlays = list(edl.overlays)
     if watermark_text:
         overlays.append(
             TextOverlay(
