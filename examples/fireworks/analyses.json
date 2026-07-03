@@ -1,0 +1,368 @@
+[
+  {
+    "asset_path": "/private/tmp/roughcut_demo/sanada_fireworks_photo_2.jpg",
+    "subjects": [
+      "fireworks display",
+      "crowd of spectators"
+    ],
+    "action": "A large, colorful fireworks display erupts in the night sky over a crowd of people at an outdoor event.",
+    "emotion": "Awe and celebration",
+    "setting": "Nighttime festival",
+    "composition_score": 6.0,
+    "aesthetic_score": 6.0,
+    "energy": 9.0,
+    "narrative_role": "climax",
+    "best_moments": [],
+    "motion_type": "static",
+    "lighting": "Dramatic, high-contrast lighting from the fireworks explosions against a dark night sky.",
+    "shot_type": "still",
+    "has_speech": false,
+    "speech_quality": 0.0,
+    "speech_segments": [],
+    "speech_is_meaningful": false,
+    "has_music": false,
+    "ambient_quality": 0.0,
+    "audio_notes": "No audio provided.",
+    "notes": "Strong climax shot with very high energy. The horizontal framing is a significant issue for a vertical short and will require a tight crop, losing either the scale of the fireworks or the crowd reaction. Distracting elements like power lines and streetlights are present."
+  },
+  {
+    "asset_path": "/private/tmp/roughcut_demo/sanada_fireworks_photo_4.jpg",
+    "subjects": [
+      "fireworks",
+      "crowd"
+    ],
+    "action": "A large fireworks display explodes in the night sky over a street festival with tents and a crowd of onlookers.",
+    "emotion": "celebratory",
+    "setting": "nighttime street festival",
+    "composition_score": 4.0,
+    "aesthetic_score": 5.0,
+    "energy": 8.0,
+    "narrative_role": "climax",
+    "best_moments": [],
+    "motion_type": "static",
+    "lighting": "The scene is lit by the bright, colorful explosions of fireworks and harsh, bright streetlights from below, creating high contrast against the dark night sky.",
+    "shot_type": "still",
+    "has_speech": false,
+    "speech_quality": 0.0,
+    "speech_segments": [],
+    "speech_is_meaningful": false,
+    "has_music": false,
+    "ambient_quality": 0.0,
+    "audio_notes": "",
+    "notes": "The composition is weak due to distracting elements like prominent power lines and streetlights that cut through the frame. The image quality is somewhat grainy and suffers from motion blur. While the energy of the moment is high, the technical execution is that of an amateur snapshot."
+  },
+  {
+    "asset_path": "/private/tmp/roughcut_demo/sanada_fireworks_photo_6.jpg",
+    "subjects": [
+      "fireworks",
+      "crowd at a festival"
+    ],
+    "action": "A large firework explodes in the night sky over a street festival with market tents and spectators.",
+    "emotion": "celebratory",
+    "setting": "nighttime street festival",
+    "composition_score": 5.0,
+    "aesthetic_score": 6.0,
+    "energy": 8.0,
+    "narrative_role": "climax",
+    "best_moments": [],
+    "motion_type": "static",
+    "lighting": "The scene is lit by the bright explosion of the firework and harsh streetlights against a dark night sky, creating high contrast.",
+    "shot_type": "still",
+    "has_speech": false,
+    "speech_quality": 0.0,
+    "speech_segments": [],
+    "speech_is_meaningful": false,
+    "has_music": false,
+    "ambient_quality": 0.0,
+    "audio_notes": "",
+    "notes": "The image captures a high-energy, climactic moment. However, the horizontal composition is a major drawback for a vertical short, as cropping would lose either the scale of the firework or the context of the festival below. The image quality is average, with some grain and light glare from street lamps."
+  },
+  {
+    "asset_path": "/private/tmp/roughcut_demo/sanada_fireworks_photo_3.jpg",
+    "subjects": [
+      "fireworks display",
+      "crowd"
+    ],
+    "action": "A vibrant fireworks display with multiple explosions of red and gold illuminates the night sky over a crowd of spectators.",
+    "emotion": "celebratory excitement",
+    "setting": "nighttime outdoor event",
+    "composition_score": 6.0,
+    "aesthetic_score": 7.0,
+    "energy": 9.0,
+    "narrative_role": "climax",
+    "best_moments": [],
+    "motion_type": "static",
+    "lighting": "High-contrast, dramatic lighting from the fireworks explosions against a dark night sky, with some ambient light from street lamps.",
+    "shot_type": "still",
+    "has_speech": false,
+    "speech_quality": 0.0,
+    "speech_segments": [],
+    "speech_is_meaningful": false,
+    "has_music": false,
+    "ambient_quality": 0.0,
+    "audio_notes": "No audio provided. The expected ambient sound would be loud fireworks explosions and crowd reactions.",
+    "notes": "This is a strong, high-energy shot suitable for the climax of a sequence. The colors are vibrant and the scene is full of action. However, the composition is cluttered on the right side with a utility pole and streetlights, which detracts from the overall aesthetic. The horizontal framing will require a significant vertical crop, potentially losing some of the expansive feel of the fireworks."
+  },
+  {
+    "asset_path": "/private/tmp/roughcut_demo/sanada_fireworks_photo_1.jpg",
+    "subjects": [
+      "fireworks display",
+      "crowd at a festival"
+    ],
+    "action": "A large, multi-burst firework explodes in the smoky night sky above a crowd watching from a street festival below.",
+    "emotion": "Awe",
+    "setting": "Nighttime street festival",
+    "composition_score": 4.0,
+    "aesthetic_score": 5.0,
+    "energy": 8.0,
+    "narrative_role": "climax",
+    "best_moments": [],
+    "motion_type": "static",
+    "lighting": "The scene is lit by the bright, explosive light of the fireworks against a dark sky, with ambient yellow light from street lamps illuminating the smoke and the ground.",
+    "shot_type": "still",
+    "has_speech": false,
+    "speech_quality": 0.0,
+    "speech_segments": [],
+    "speech_is_meaningful": false,
+    "has_music": false,
+    "ambient_quality": 0.0,
+    "audio_notes": "",
+    "notes": "The image captures a high-energy moment, but the composition is cluttered with distracting power lines and streetlights. The smoke partially obscures the fireworks, reducing clarity. The horizontal aspect ratio is not ideal for a vertical short and would require a significant crop, losing important context. Image quality is average, with some digital noise visible."
+  },
+  {
+    "asset_path": "/private/tmp/roughcut_demo/sanada_fireworks_photo_5.jpg",
+    "subjects": [
+      "Fireworks display",
+      "Night sky"
+    ],
+    "action": "Multiple red and purple fireworks explode across a dark, smoky night sky, creating a vibrant and layered display of light.",
+    "emotion": "Celebratory and awe-inspiring",
+    "setting": "A night sky during a celebration",
+    "composition_score": 7.0,
+    "aesthetic_score": 8.0,
+    "energy": 9.0,
+    "narrative_role": "climax",
+    "best_moments": [],
+    "motion_type": "static",
+    "lighting": "Self-illuminated by the bright firework bursts against a dark, ambient sky.",
+    "shot_type": "still",
+    "has_speech": false,
+    "speech_quality": 0.0,
+    "speech_segments": [],
+    "speech_is_meaningful": false,
+    "has_music": false,
+    "ambient_quality": 0.0,
+    "audio_notes": "No audio provided with the still image.",
+    "notes": "Excellent high-energy shot, perfect for a climax. The diagonal composition is strong, but its horizontal aspect ratio is a major drawback for a vertical short; a crop will lose much of the visual impact. The image is slightly soft and grainy, and the smoke somewhat obscures the details."
+  },
+  {
+    "asset_path": "/private/tmp/roughcut_demo/sanada_fireworks_1.mp4",
+    "subjects": [
+      "fireworks display",
+      "crowd",
+      "streetlights"
+    ],
+    "action": "A large, multi-colored fireworks display explodes in the night sky above a crowd and streetlights.",
+    "emotion": "awe",
+    "setting": "outdoor festival at night",
+    "composition_score": 4.0,
+    "aesthetic_score": 5.0,
+    "energy": 9.0,
+    "narrative_role": "climax",
+    "best_moments": [
+      [
+        44.0,
+        47.5
+      ],
+      [
+        4.0,
+        7.0
+      ],
+      [
+        28.5,
+        30.5
+      ]
+    ],
+    "motion_type": "handheld",
+    "lighting": "mixed",
+    "shot_type": "crowd",
+    "has_speech": true,
+    "speech_quality": 2.0,
+    "speech_segments": [
+      {
+        "start_s": 0.0,
+        "end_s": 3.0,
+        "text": "Oh, oh, oh, oh, oh.",
+        "confidence": 0.5347328552832971
+      },
+      {
+        "start_s": 30.0,
+        "end_s": 31.6,
+        "text": "Oh.",
+        "confidence": 0.46851487901475697
+      }
+    ],
+    "speech_is_meaningful": false,
+    "has_music": false,
+    "ambient_quality": 9.0,
+    "audio_notes": "Loud firework explosions are the primary audio, very effective for the scene.",
+    "notes": "Handheld and shaky with foreground obstructions, but captures the energy of a big finale."
+  },
+  {
+    "asset_path": "/private/tmp/roughcut_demo/sanada_fireworks_2.mp4",
+    "subjects": [
+      "fireworks",
+      "smoke",
+      "streetlights"
+    ],
+    "action": "A continuous barrage of multi-colored fireworks explodes in the night sky, creating a chaotic and bright display.",
+    "emotion": "celebratory chaos",
+    "setting": "outdoors at night, urban/suburban area",
+    "composition_score": 4.0,
+    "aesthetic_score": 4.0,
+    "energy": 8.0,
+    "narrative_role": "climax",
+    "best_moments": [
+      [
+        7.0,
+        10.0
+      ],
+      [
+        14.0,
+        17.0
+      ],
+      [
+        2.0,
+        5.0
+      ]
+    ],
+    "motion_type": "static",
+    "lighting": "mixed",
+    "shot_type": "b_roll",
+    "has_speech": true,
+    "speech_quality": 0.0,
+    "speech_segments": [
+      {
+        "start_s": 0.0,
+        "end_s": 29.98,
+        "text": "\u0421\u0443\u0431\u0442\u0438\u0442\u0440\u044b \u0441\u043e\u0437\u0434\u0430\u0432\u0430\u043b DimaTorzok",
+        "confidence": 0.852964485392851
+      },
+      {
+        "start_s": 30.0,
+        "end_s": 59.980000000000004,
+        "text": "\u0414\u043e\u0431\u0430\u0432\u0438\u043b \u0441\u0443\u0431\u0442\u0438\u0442\u0440\u044b DimaTorzok",
+        "confidence": 0.9591280553076003
+      }
+    ],
+    "speech_is_meaningful": false,
+    "has_music": false,
+    "ambient_quality": 9.0,
+    "audio_notes": "Audio consists entirely of loud, clear fireworks explosions and crackles.",
+    "notes": "Foreground streetlights and power lines are distracting and may need to be cropped out."
+  },
+  {
+    "asset_path": "/private/tmp/roughcut_demo/sanada_fireworks_4.mp4",
+    "subjects": [
+      "fireworks",
+      "smoke"
+    ],
+    "action": "A dense fireworks display explodes in the night sky, filling the frame with colorful bursts and thick smoke.",
+    "emotion": "celebratory chaos",
+    "setting": "night sky during a fireworks show",
+    "composition_score": 3.0,
+    "aesthetic_score": 4.0,
+    "energy": 8.0,
+    "narrative_role": "climax",
+    "best_moments": [
+      [
+        13.5,
+        16.5
+      ],
+      [
+        28.5,
+        31.0
+      ],
+      [
+        32.5,
+        34.0
+      ]
+    ],
+    "motion_type": "handheld",
+    "lighting": "stage",
+    "shot_type": "b_roll",
+    "has_speech": true,
+    "speech_quality": 1.0,
+    "speech_segments": [
+      {
+        "start_s": 0.0,
+        "end_s": 29.98,
+        "text": "Oh, my God.",
+        "confidence": 0.5129783153533936
+      },
+      {
+        "start_s": 30.0,
+        "end_s": 59.980000000000004,
+        "text": "Oh, my God.",
+        "confidence": 0.9196270257234573
+      }
+    ],
+    "speech_is_meaningful": false,
+    "has_music": false,
+    "ambient_quality": 9.0,
+    "audio_notes": "Loud firework explosions dominate. Transcribed speech is inaudible/likely ASR error.",
+    "notes": "Very shaky handheld footage, but the finale sequence is dense and energetic."
+  },
+  {
+    "asset_path": "/private/tmp/roughcut_demo/sanada_fireworks_3.mp4",
+    "subjects": [
+      "fireworks display",
+      "smoke"
+    ],
+    "action": "A vibrant fireworks display illuminates the night sky with a series of colorful explosions and loud bangs.",
+    "emotion": "Awe",
+    "setting": "Outdoor fireworks display at night",
+    "composition_score": 4.0,
+    "aesthetic_score": 6.0,
+    "energy": 8.0,
+    "narrative_role": "climax",
+    "best_moments": [
+      [
+        25.5,
+        28.5
+      ],
+      [
+        33.0,
+        37.0
+      ],
+      [
+        12.5,
+        15.0
+      ]
+    ],
+    "motion_type": "handheld",
+    "lighting": "stage",
+    "shot_type": "b_roll",
+    "has_speech": true,
+    "speech_quality": 0.0,
+    "speech_segments": [
+      {
+        "start_s": 0.0,
+        "end_s": 30.0,
+        "text": "let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let",
+        "confidence": 0.8478038533528646
+      },
+      {
+        "start_s": 30.0,
+        "end_s": 43.0,
+        "text": "let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let let's let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let",
+        "confidence": 0.8318587578667535
+      }
+    ],
+    "speech_is_meaningful": false,
+    "has_music": false,
+    "ambient_quality": 9.0,
+    "audio_notes": "Audio is entirely fireworks explosions; the speech transcript appears to be a transcription error.",
+    "notes": "Low-resolution video with some digital artifacts, but the fireworks finale is impressive."
+  }
+]

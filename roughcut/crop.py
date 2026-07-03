@@ -37,10 +37,19 @@ def _load_mediapipe():
 def _load_haar() -> "cv2.CascadeClassifier | None":
     # OpenCV 5.x headless wheels may not bundle the cascade file;
     # CascadeClassifier silently loads EMPTY and then asserts at detect time.
+    # Silence OpenCV's internal logging during the probe so a missing file
+    # doesn't print a scary ERROR on every render.
     try:
-        cascade = cv2.CascadeClassifier(
-            cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
-        )
+        prev_level = cv2.getLogLevel() if hasattr(cv2, "getLogLevel") else None
+        if hasattr(cv2, "setLogLevel"):
+            cv2.setLogLevel(0)
+        try:
+            cascade = cv2.CascadeClassifier(
+                cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
+            )
+        finally:
+            if prev_level is not None:
+                cv2.setLogLevel(prev_level)
         return None if cascade.empty() else cascade
     except Exception:
         return None

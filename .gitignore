@@ -9,8 +9,8 @@ cache/
 *.mov
 *.wav
 *.mp3
-!examples/sample/*.mp4
-examples/sample/.gitkeep
+!examples/fireworks/demo_reel.mp4
+!assets/demo.gif
 .ruff_cache/
 .pytest_cache/
 dist/

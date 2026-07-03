@@ -1,0 +1,72 @@
+{
+  "/private/tmp/roughcut_demo/sanada_fireworks_1.mp4": [
+    {
+      "start_s": 0.0,
+      "end_s": 3.0,
+      "text": "Oh, oh, oh, oh, oh.",
+      "confidence": 0.5347328552832971
+    },
+    {
+      "start_s": 30.0,
+      "end_s": 31.6,
+      "text": "Oh.",
+      "confidence": 0.46851487901475697
+    }
+  ],
+  "/private/tmp/roughcut_demo/sanada_fireworks_2.mp4": [
+    {
+      "start_s": 0.0,
+      "end_s": 29.98,
+      "text": "\u0421\u0443\u0431\u0442\u0438\u0442\u0440\u044b \u0441\u043e\u0437\u0434\u0430\u0432\u0430\u043b DimaTorzok",
+      "confidence": 0.852964485392851
+    },
+    {
+      "start_s": 30.0,
+      "end_s": 59.980000000000004,
+      "text": "\u0414\u043e\u0431\u0430\u0432\u0438\u043b \u0441\u0443\u0431\u0442\u0438\u0442\u0440\u044b DimaTorzok",
+      "confidence": 0.9591280553076003
+    }
+  ],
+  "/private/tmp/roughcut_demo/sanada_fireworks_3.mp4": [
+    {
+      "start_s": 0.0,
+      "end_s": 30.0,
+      "text": "let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let",
+      "confidence": 0.8478038533528646
+    },
+    {
+      "start_s": 30.0,
+      "end_s": 43.0,
+      "text": "let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let let's let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let",
+      "confidence": 0.8318587578667535
+    }
+  ],
+  "/private/tmp/roughcut_demo/sanada_fireworks_4.mp4": [
+    {
+      "start_s": 0.0,
+      "end_s": 29.98,
+      "text": "Oh, my God.",
+      "confidence": 0.5129783153533936
+    },
+    {
+      "start_s": 30.0,
+      "end_s": 59.980000000000004,
+      "text": "Oh, my God.",
+      "confidence": 0.9196270257234573
+    }
+  ],
+  "/private/tmp/roughcut_demo/sanada_fireworks_5.mp4": [
+    {
+      "start_s": 0.0,
+      "end_s": 30.0,
+      "text": "let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let",
+      "confidence": 0.8510863071017796
+    },
+    {
+      "start_s": 30.0,
+      "end_s": 37.82,
+      "text": "let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let's let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let let",
+      "confidence": 0.850717044406467
+    }
+  ]
+}
