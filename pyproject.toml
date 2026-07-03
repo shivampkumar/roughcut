@@ -1,7 +1,7 @@
 [project]
 name = "roughcut"
 version = "0.1.0"
-description = "Camera roll to viral reel — drop photos + videos, get one finished short."
+description = "Camera roll to viral reel - drop photos + videos, get one finished short."
 requires-python = ">=3.11"
 dependencies = [
   "google-genai>=0.3.0",

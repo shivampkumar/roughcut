@@ -17,7 +17,7 @@ input/                                output/reel.mp4
 
 ## Why
 
-Apple Memories is slideshow-grade. Opus Clip splits one long video into many shorts (the opposite problem). CapCut templates look auto-generated. Nothing turns a folder of raw event footage into something you'd actually post — so people either spend hours in an editor or post nothing.
+Apple Memories is slideshow-grade. Opus Clip splits one long video into many shorts (the opposite problem). CapCut templates look auto-generated. Nothing turns a folder of raw event footage into something you'd actually post - so people either spend hours in an editor or post nothing.
 
 ## How it works
 
@@ -25,7 +25,7 @@ Apple Memories is slideshow-grade. Opus Clip splits one long video into many sho
 INGEST       ffprobe + EXIF: metadata, rotation-aware dimensions
 SPEECH       Whisper (mlx, local): ground-truth transcripts per clip
 UNDERSTAND   Gemini: per-clip scores, best moments, shot type (A-roll/B-roll), audio analysis
-STORY        Claude: Edit Decision List — clip order, per-clip audio decision,
+STORY        Claude: Edit Decision List - clip order, per-clip audio decision,
              overlays, SFX cues, music mood. best_moments are binding.
 RENDER       ffmpeg: crop/punch-in/Ken Burns, xfade, music ducked under speech,
              synthesized SFX, PIL text overlays, -14 LUFS loudnorm
@@ -39,13 +39,13 @@ roughcut edit "trim the close by a second and add a boom at 0:05"
 
 ## Two modes
 
-**Casual** — zero config. Auto-detects the event (concert / trip / party / wedding), invents the narrative, leans on real audio from the scene.
+**Casual** - zero config. Auto-detects the event (concert / trip / party / wedding), invents the narrative, leans on real audio from the scene.
 
 ```bash
 roughcut casual ~/Photos/tokyo-trip --music track.mp3
 ```
 
-**Pro** — for creators. Brief-driven, with reference-reel style transfer, brand kits, script alignment (your talking-head A-roll is matched to your script via Whisper, B-roll cut in between), and multi-variant generation.
+**Pro** - for creators. Brief-driven, with reference-reel style transfer, brand kits, script alignment (your talking-head A-roll is matched to your script via Whisper, B-roll cut in between), and multi-variant generation.
 
 ```bash
 roughcut pro ~/footage/ep12 \
