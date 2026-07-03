@@ -185,7 +185,7 @@ class EDLClip(BaseModel):
 
 
 class BrandKit(BaseModel):
-    """Brand styling for ICP 2 (creators). Stored as JSON, loaded per project."""
+    """Brand styling for creator mode. Stored as JSON, loaded per project."""
 
     name: str = "default"
     logo_path: Path | None = None

@@ -318,7 +318,7 @@ def casual(
     concurrency: int = typer.Option(4, "--concurrency"),
     no_watermark: bool = typer.Option(False, "--no-watermark", help="Paid tier removes watermark"),
 ) -> None:
-    """ICP 1: Amateur. Drop a folder, get a finished Reel. Zero config.
+    """Drop a folder, get a finished Reel. Zero config.
 
     Free tier ships with a corner watermark. --no-watermark for paid users.
     """
@@ -353,7 +353,7 @@ def pro(
     variants: int = typer.Option(1, "--variants", min=1, max=5),
     concurrency: int = typer.Option(4, "--concurrency"),
 ) -> None:
-    """ICP 2: Creator. Brief-driven. References, brand kit, script alignment, multi-variant."""
+    """Creator mode. Brief-driven: references, brand kit, script alignment, multi-variant."""
     assets, analyses = _run_ingest_speech_understand(input_dir, concurrency)
 
     ref_style = None
