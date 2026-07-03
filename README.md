@@ -93,4 +93,4 @@ roughcut pro /tmp/roughcut_fixtures --brief "test" \
 
 ## Roadmap
 
-See [plan.md](plan.md). Highlights: incremental re-render cache for the edit loop, auto music, event templates, iOS Shortcuts, Mac app, fully-local model path (Qwen-VL + MLX).
+See [ROADMAP.md](ROADMAP.md). Highlights: incremental re-render cache for the edit loop, auto music, event templates, iOS Shortcuts, Mac app, fully-local model path (Qwen-VL + MLX).
