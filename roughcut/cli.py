@@ -1,4 +1,4 @@
-"""montage CLI.
+"""roughcut CLI.
 
 Stage-by-stage for fast iteration; or one-shot `process`.
 """
@@ -150,8 +150,8 @@ def edit(
 ) -> None:
     """Apply a natural-language edit instruction to the current EDL.
 
-    Example: montage edit "at 0:08 add text 'WAIT FOR IT' for 2 seconds"
-    Example: montage edit "remove the second SFX and trim the close by 1 second"
+    Example: roughcut edit "at 0:08 add text 'WAIT FOR IT' for 2 seconds"
+    Example: roughcut edit "remove the second SFX and trim the close by 1 second"
     """
     edl = story_mod.load(edl_in)
     analyses = understand_mod.load(analyses_in)

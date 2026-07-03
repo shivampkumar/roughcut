@@ -1,7 +1,7 @@
 """Synthesized SFX library.
 
 Generates 8 standard SFX wavs deterministically from numpy. Zero licensing,
-ships with the package. Re-run `montage init-sfx` to regenerate.
+ships with the package. Re-run `roughcut init-sfx` to regenerate.
 """
 
 from __future__ import annotations

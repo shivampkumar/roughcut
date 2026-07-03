@@ -21,7 +21,7 @@ OUT = Path("/tmp/roughcut_fixtures")
 OUT.mkdir(parents=True, exist_ok=True)
 
 SPEECH = (
-    "Welcome back to the channel. Today we are testing the montage pipeline. "
+    "Welcome back to the channel. Today we are testing the roughcut pipeline. "
     "This synthetic clip proves that script alignment works end to end."
 )
 
@@ -118,7 +118,7 @@ def make_photos() -> None:
 def make_script() -> None:
     (OUT / "script.txt").write_text(
         "Welcome back to the channel.\n\n"
-        "Today we are testing the montage pipeline.\n\n"
+        "Today we are testing the roughcut pipeline.\n\n"
         "This synthetic clip proves that script alignment works end to end.\n"
     )
 
