@@ -32,6 +32,9 @@ For the video provided, return strict JSON matching this schema:
 
 {
   "asset_path": "<ignored, will be set by caller>",
+  "timeline": [
+    {"t": 0.0, "v": "framing/movement - what is on screen, max 15 words", "s": "speech at this moment or null"}
+  ],
   "subjects": ["main person/object visible, then secondary subjects"],
   "action": "ONE sentence: what is actually happening, plainly",
   "emotion": "the dominant feeling (e.g. 'joyful chaos', 'quiet intimacy', 'pure hype', 'awe')",
@@ -55,6 +58,12 @@ For the video provided, return strict JSON matching this schema:
   "audio_notes": "one line on the audio. e.g. 'crowd roar peaks at 2.3s' or 'wind dominates, mute it'",
   "notes": "anything an editor should know. one line max."
 }
+
+TIMELINE RULES (the timeline is the source of truth; everything else summarizes it):
+- Log significant visual changes only, max 12 events per clip. GROUP repeats: same shot with minor variation is ONE event with a count. A montage is ONE event.
+- Every t is TOTAL SECONDS from clip start, within the clip's real duration. Never invent timestamps past the end.
+- Mark camera-flips, selfie segments, blur/whip-pans, and darkness explicitly in v; downstream cutting decisions depend on these words.
+- best_moments must each correspond to a region described by timeline events.
 
 RULES:
 - Be picky. Most clips are mediocre. Reserve 8+ scores for footage you'd actually post.

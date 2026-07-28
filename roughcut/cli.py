@@ -216,7 +216,9 @@ def story(
     edl, vnotes = validate_and_fix(edl, analyses, assets)
     for n in vnotes:
         console.print(f"  [yellow]validate:[/yellow] {n}")
-    story_mod.save(edl, out)
+    story_mod.save(edl, out, note=brief or "fresh story run")
+    timeline = story_mod.compose_reel_timeline(edl, analyses)
+    (out.parent / "reel_timeline.json").write_text(json.dumps(timeline, indent=2))
     _print_edl(edl)
     console.print(f"[green]EDL[/green] → {out}")
 

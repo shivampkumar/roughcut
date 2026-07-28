@@ -391,9 +391,40 @@ def build_variants(
     return edls
 
 
-def save(edl: EDL, path: Path) -> None:
+def save(edl: EDL, path: Path, note: str = "") -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(edl.model_dump_json(indent=2))
+    # Version history with provenance: git-for-edits. v1..N never overwritten.
+    vdir = path.parent / "versions"
+    vdir.mkdir(exist_ok=True)
+    n = len(list(vdir.glob("edl_v*.json"))) + 1
+    payload = json.loads(edl.model_dump_json())
+    payload["_provenance"] = {"version": n, "note": note}
+    (vdir / f"edl_v{n}.json").write_text(json.dumps(payload, indent=2))
+
+
+def compose_reel_timeline(edl: EDL, analyses: list) -> list[dict]:
+    """The rendered reel's own timeline: reel_t -> source clip/time + events.
+    Makes the CREATED media as described as the supplied media, so prompts
+    like 'at 0:14 the shot is shaky' resolve mechanically."""
+    by_path = {str(a.asset_path): a for a in analyses}
+    out, t = [], 0.0
+    for c in edl.arc:
+        a = by_path.get(str(c.asset_path))
+        evs = [
+            {"reel_t": round(t + (e.t - c.in_s), 2), "v": e.v, "s": e.s}
+            for e in (a.timeline if a else [])
+            if c.in_s <= e.t <= c.out_s
+        ]
+        out.append({
+            "reel_start": round(t, 2), "reel_end": round(t + c.duration_s, 2),
+            "source": str(c.asset_path), "src_in": c.in_s, "src_out": c.out_s,
+            "role": c.role.value if hasattr(c.role, "value") else str(c.role),
+            "audio": str(c.audio_decision.value if hasattr(c.audio_decision, "value") else c.audio_decision),
+            "events": evs,
+        })
+        t += c.duration_s
+    return out
 
 
 def load(path: Path) -> EDL:

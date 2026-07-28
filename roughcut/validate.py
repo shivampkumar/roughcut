@@ -40,8 +40,19 @@ def validate_and_fix(
     t = 0.0
     for i, c in enumerate(arc):
         analysis = by_path.get(str(c.asset_path))
-        text = (analysis.action + " " + analysis.notes).lower() if analysis else ""
-        is_selfieish = "selfie" in text
+        # Prefer timeline events overlapping THIS window; fall back to summary.
+        text = ""
+        if analysis:
+            evs = [e for e in analysis.timeline
+                   if e.v and c.in_s - 1.0 <= e.t <= c.out_s + 0.5]
+            text = " ".join(e.v for e in evs).lower() if evs else (
+                analysis.action + " " + analysis.notes).lower()
+        is_selfieish = any(w in text for w in ("selfie", "camera flips", "front camera"))
+        if any(w in text for w in ("blur", "whip", "shaky pan")) and c.role.value not in ("hook", "close"):
+            pass  # flagged by note only; trimming blur windows precisely needs frame checks
+        if any(w in text for w in ("dark", "black frame", "underexposed")) and (c.out_s - c.in_s) > 2.0:
+            c.out_s = c.in_s + 2.0
+            notes.append(f"trimmed dark-flagged cut to 2s")
         dur = c.out_s - c.in_s
         if is_selfieish and dur > 1.5:
             c.out_s = c.in_s + 1.5

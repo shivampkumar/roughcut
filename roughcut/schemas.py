@@ -79,6 +79,16 @@ class SpeechSegment(BaseModel):
     confidence: float = 1.0
 
 
+class TimelineEvent(BaseModel):
+    """One observable beat: {t, v, s}. v = visual (framing - description),
+    s = speech at that moment. Either may be null. Borrowed from Palo's
+    analysis substrate: atoms point at timelines, summaries drift."""
+
+    t: float
+    v: str | None = None
+    s: str | None = None
+
+
 class ClipAnalysis(BaseModel):
     asset_path: Path
 
@@ -92,6 +102,9 @@ class ClipAnalysis(BaseModel):
     composition_score: float = Field(ge=0, le=10, description="Cinematography quality")
     aesthetic_score: float = Field(ge=0, le=10, description="Visual appeal")
     energy: float = Field(ge=0, le=10, description="Motion + emotional intensity")
+
+    # Dense observable timeline (grouped beats; the map, not the postcard)
+    timeline: list[TimelineEvent] = Field(default_factory=list)
 
     # Narrative
     narrative_role: NarrativeRole
