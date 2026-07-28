@@ -212,6 +212,10 @@ def story(
         user_brief=brief or None,
         model=model,
     )
+    from roughcut.validate import validate_and_fix
+    edl, vnotes = validate_and_fix(edl, analyses, assets)
+    for n in vnotes:
+        console.print(f"  [yellow]validate:[/yellow] {n}")
     story_mod.save(edl, out)
     _print_edl(edl)
     console.print(f"[green]EDL[/green] → {out}")

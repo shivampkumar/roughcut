@@ -33,13 +33,22 @@ def main():
     rev = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
                          capture_output=True, text=True).stdout.strip()
     out = Path("bench/history.jsonl"); out.parent.mkdir(exist_ok=True)
+    RUNS = 3
     for p in paths:
-        scores, flaw = judge(client, p)
+        all_scores, flaws = [], []
+        for _ in range(RUNS):
+            scores, flaw = judge(client, p)
+            if scores:
+                all_scores.append(scores); flaws.append(flaw)
+        keys = set().union(*[s.keys() for s in all_scores]) if all_scores else set()
+        avg = {k: round(sum(s.get(k, 0) for s in all_scores) / len(all_scores), 1)
+               for k in keys}
         row = {"ts": datetime.now(timezone.utc).isoformat(), "label": label, "rev": rev,
-               "file": Path(p).name, "scores": scores, "flaw": flaw}
+               "file": Path(p).name, "runs": all_scores, "avg": avg, "flaws": flaws}
         with open(out, "a") as f:
             f.write(json.dumps(row) + "\n")
-        print(f"{Path(p).name}: {scores} | {flaw[:80]}")
+        print(f"{Path(p).name} avg: {avg}")
+        for fl in flaws: print(f"  flaw: {fl[:90]}")
 
 if __name__ == "__main__":
     main()
