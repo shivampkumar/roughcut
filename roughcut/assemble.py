@@ -246,12 +246,25 @@ def _mix_audio_and_overlays(
     out_path: Path,
     brand: BrandKit | None = None,
     normalize_audio: bool = True,
+    spine_audio: Path | None = None,
+    total_duration_s: float = 0.0,
 ) -> None:
-    """Single final pass: mix music + voiceover + SFX + clip audio, burn text overlays."""
+    """Single final pass: mix music + voiceover + SFX + clip audio, burn text overlays.
+    With a spine, the spine IS the soundtrack: original clip audio and music
+    are dropped entirely."""
     inputs: list[str] = ["-i", str(video_in)]  # 0: clips
     filter_parts: list[str] = []
     audio_labels: list[str] = ["[0:a]"]
     input_idx = 1
+
+    if spine_audio is not None:
+        inputs += ["-i", str(spine_audio)]
+        filter_parts.append(f"[{input_idx}:a]aresample=44100[spine]")
+        audio_labels = ["[spine]"]
+        input_idx += 1
+        music_path = None
+        # Match the audio resolve with a 0.6s video fade to black at the end.
+        spine_fade_vf = True
 
     if music_path is not None:
         inputs += ["-i", str(music_path)]
@@ -352,7 +365,13 @@ def _mix_audio_and_overlays(
         filter_parts.append(f"{prev_label}null[vout]")
         prev_label = "[vout]"
 
-    video_map = prev_label if (text_overlay_count or (brand and brand.logo_path)) else "0:v"
+    if spine_audio is not None:
+        src = prev_label if (text_overlay_count or (brand and brand.logo_path)) else "[0:v]"
+        fade_st = max(0.0, total_duration_s - 0.6)
+        filter_parts.append(f"{src}fade=t=out:st={fade_st:.2f}:d=0.6[vfade]")
+        prev_label = "[vfade]"
+
+    video_map = prev_label if (spine_audio is not None or text_overlay_count or (brand and brand.logo_path)) else "0:v"
 
     filter_complex = ";".join(filter_parts)
 
@@ -370,6 +389,25 @@ def _mix_audio_and_overlays(
         str(out_path),
     ]
     _run(args)
+
+
+def _extract_spine_audio(edl: EDL, work_dir: Path) -> Path | None:
+    if edl.audio_spine is None:
+        return None
+    sp = edl.audio_spine
+    # The spine window may be longer than the video timeline; -shortest will cut
+    # audio at the video end, so the fade must sit at the TIMELINE end or it is
+    # never heard.
+    dur = min(sp.out_s - sp.in_s, edl.total_duration_s)
+    out = work_dir / "spine.wav"
+    fade_start = max(0.0, dur - 1.4)
+    _run([
+        "ffmpeg", "-y", "-ss", f"{sp.in_s}", "-i", str(sp.asset_path),
+        "-t", f"{dur}", "-vn", "-ac", "2", "-ar", "44100",
+        "-af", f"afade=t=out:st={fade_start:.2f}:d=1.4",
+        str(out),
+    ])
+    return out
 
 
 def assemble(
@@ -405,6 +443,8 @@ def assemble(
     else:
         _concat_clips(clip_paths, concat_out)
 
+    spine_audio = _extract_spine_audio(edl, work_dir)
+
     # Clamp overlays into the actual timeline — the story model sometimes
     # schedules a closer past the final frame, where it would never display.
     total = edl.total_duration_s
@@ -436,5 +476,7 @@ def assemble(
         out_path=out_path,
         brand=brand,
         normalize_audio=normalize_audio,
+        spine_audio=spine_audio,
+        total_duration_s=edl.total_duration_s,
     )
     return out_path

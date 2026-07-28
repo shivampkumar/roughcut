@@ -139,6 +139,7 @@ _SCHEMA_HINT = """JSON schema (informal):
     },
     ...
   ],
+  "audio_spine": {"asset_path": "<path>", "in_s": 46.0, "out_s": 64.0} | null,   // REQUIRED for live-music footage. Spine length = reel length. Sync the spine clip's own video segments to spine time.
   "music_mood": "uplifting | melancholic | hype | dreamy | gritty | tender | ...",
   "music_genre": "indie-electronic | hyperpop | lofi | trap | orchestral | ...",
   "music_bpm": 128,
@@ -247,6 +248,7 @@ def build_edl(
     brand_kit: BrandKit | None = None,
     script: Script | None = None,
     variant_angle: str | None = None,
+    _retry: bool = True,
 ) -> EDL:
     """Ask Claude Opus to produce an EDL given the analyzed clips."""
     api_key = os.getenv("ANTHROPIC_API_KEY")
@@ -303,11 +305,46 @@ def build_edl(
 
     try:
         data = json.loads(text)
-        return EDL.model_validate(data)
+        edl = EDL.model_validate(data)
     except (json.JSONDecodeError, ValidationError) as e:
         raise RuntimeError(
             f"Story stage produced invalid EDL: {e}\n\nRaw output:\n{text}"
         ) from e
+
+    # ENFORCE the audio spine: doctrine says live music must never chop, and
+    # the model skips it often enough that the rule needs teeth. One retry with
+    # an explicit demand; judged output doubles in quality with a spine.
+    has_live_music = any(a.has_music for a in analyses)
+    if has_live_music and edl.audio_spine is None and _retry:
+        followup = (
+            "Your EDL omitted audio_spine but the footage contains live music. "
+            "This is a hard requirement. Choose the clip whose analysis shows the "
+            "best continuous audio (performer and crowd both clear), set audio_spine "
+            "to one unbroken window of it (length = total reel length), time-sync "
+            "that clip's own video segments to the spine window, and ensure any "
+            "caption text is coherent with continuous audio. Output the corrected "
+            "full EDL JSON only."
+        )
+        msg2 = client.messages.create(
+            model=model,
+            max_tokens=4096,
+            system=system_prompt,
+            messages=[
+                {"role": "user", "content": "\n".join(user_msg_parts)},
+                {"role": "assistant", "content": text},
+                {"role": "user", "content": followup},
+            ],
+        )
+        text2 = "".join(b.text for b in msg2.content if hasattr(b, "text")).strip()
+        if text2.startswith("```"):
+            text2 = text2.split("\n", 1)[1]
+            if text2.rstrip().endswith("```"):
+                text2 = text2.rstrip()[:-3]
+        try:
+            edl = EDL.model_validate(json.loads(text2.strip()))
+        except (json.JSONDecodeError, ValidationError):
+            pass  # keep the first EDL rather than fail the run
+    return edl
 
 
 def build_variants(

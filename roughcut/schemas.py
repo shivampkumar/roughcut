@@ -212,6 +212,14 @@ class RefStyle(BaseModel):
     typical_overlay_style: str = "bold_center"
 
 
+class AudioSpine(BaseModel):
+    """Continuous audio window carrying the whole reel (live-music events)."""
+
+    asset_path: Path
+    in_s: float
+    out_s: float
+
+
 class EDL(BaseModel):
     """Edit Decision List — the output of story stage."""
 
@@ -220,6 +228,9 @@ class EDL(BaseModel):
 
     # Visual sequence
     arc: list[EDLClip]
+
+    # Audio spine (live music): one unbroken audio window under the whole reel
+    audio_spine: AudioSpine | None = None
 
     # Music bed
     music_mood: str
