@@ -263,8 +263,7 @@ def _mix_audio_and_overlays(
         audio_labels = ["[spine]"]
         input_idx += 1
         music_path = None
-        # Match the audio resolve with a 0.6s video fade to black at the end.
-        spine_fade_vf = True
+        normalize_audio = False  # already normalized pre-fade; re-norm would undo the fade
 
     if music_path is not None:
         inputs += ["-i", str(music_path)]
@@ -395,16 +394,42 @@ def _extract_spine_audio(edl: EDL, work_dir: Path) -> Path | None:
     if edl.audio_spine is None:
         return None
     sp = edl.audio_spine
+    # RESOLUTION OUTRO: when the final clip keeps its own audio (a cheer, an
+    # applause moment), the spine covers everything before it and crossfades
+    # into the outro's real sound. A cheer is a natural ending; a faded chorus
+    # is a fumble.
+    last = edl.arc[-1] if edl.arc else None
+    spine_len = sp.out_s - sp.in_s
+    if last is not None and str(last.audio_decision) in ("keep_loud", "AudioDecision.keep_loud") or getattr(last.audio_decision, "value", last.audio_decision) == "keep_loud":
+        outro_dur = last.out_s - last.in_s
+        body_len = min(spine_len, max(0.5, edl.total_duration_s - outro_dur))
+        a = work_dir / "_sp.wav"; b = work_dir / "_outro.wav"; out = work_dir / "spine.wav"
+        _run(["ffmpeg", "-y", "-ss", f"{sp.in_s}", "-i", str(sp.asset_path),
+              "-t", f"{body_len + 0.5}", "-vn", "-ac", "2", "-ar", "44100",
+              "-af", "loudnorm=I=-14:TP=-1:LRA=11", str(a)])
+        _run(["ffmpeg", "-y", "-ss", f"{last.in_s}", "-i", str(last.asset_path),
+              "-t", f"{outro_dur}", "-vn", "-ac", "2", "-ar", "44100",
+              "-af", "loudnorm=I=-14:TP=-1:LRA=11,afade=t=out:st="
+                     f"{max(0.0, outro_dur - 1.0):.2f}:d=1.0", str(b)])
+        _run(["ffmpeg", "-y", "-i", str(a), "-i", str(b),
+              "-filter_complex", "[0:a][1:a]acrossfade=d=0.5[o]",
+              "-map", "[o]", str(out)])
+        return out
     # The spine window may be longer than the video timeline; -shortest will cut
     # audio at the video end, so the fade must sit at the TIMELINE end or it is
     # never heard.
+    # Land the whole fade INSIDE the video timeline: concat fps rounding makes
+    # the video a hair shorter than the sum of clip durations, and -shortest
+    # then chops the quietest tail of the fade. Fade earlier, fully inside.
     dur = min(sp.out_s - sp.in_s, edl.total_duration_s)
     out = work_dir / "spine.wav"
-    fade_start = max(0.0, dur - 1.4)
+    fade_start = max(0.0, dur - 2.0)
+    # Loudness-normalize FIRST, fade LAST: dynamic loudnorm pumps a faded tail
+    # back up, which is why an earlier fade was inaudible in the output.
     _run([
         "ffmpeg", "-y", "-ss", f"{sp.in_s}", "-i", str(sp.asset_path),
         "-t", f"{dur}", "-vn", "-ac", "2", "-ar", "44100",
-        "-af", f"afade=t=out:st={fade_start:.2f}:d=1.4",
+        "-af", f"loudnorm=I=-14:TP=-1:LRA=11,afade=t=out:st={fade_start:.2f}:d=1.6",
         str(out),
     ])
     return out
